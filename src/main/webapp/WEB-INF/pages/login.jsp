@@ -5,6 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-<h1>sdfa</h1>
+<h1>sdfa </h1>
+${user}
 </body>
 </html>
