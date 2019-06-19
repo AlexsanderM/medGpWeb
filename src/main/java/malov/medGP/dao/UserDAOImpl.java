@@ -1,10 +1,12 @@
 package malov.medGP.dao;
 
 import malov.medGP.model.User;
+import org.springframework.stereotype.Repository;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
+@Repository
 public class UserDAOImpl implements UserDAO {
     private static final AtomicInteger AUTO_ID = new AtomicInteger(0);
     private static Map<Integer, User> users = new HashMap<Integer, User>();
@@ -16,9 +18,9 @@ public class UserDAOImpl implements UserDAO {
         users.put(user1.getId(), user1);
 
         User user2 = new User();
-        user1.setId(AUTO_ID.getAndIncrement());
-        user1.setName("qqqqq");
-        users.put(user1.getId(), user1);
+        user2.setId(AUTO_ID.getAndIncrement());
+        user2.setName("ffff");
+        users.put(user2.getId(), user2);
     }
 
     public List<User> allUser() {
