@@ -1,6 +1,9 @@
 package malov.medGP.dao;
 
 import malov.medGP.model.User;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.*;
@@ -10,21 +13,18 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class UserDAOImpl implements UserDAO {
     private static final AtomicInteger AUTO_ID = new AtomicInteger(0);
     private static Map<Integer, User> users = new HashMap<Integer, User>();
+    private SessionFactory sessionFactory;
 
-    static {
-        User user1 = new User();
-        user1.setId(AUTO_ID.getAndIncrement());
-        user1.setName("qqqqq");
-        users.put(user1.getId(), user1);
-
-        User user2 = new User();
-        user2.setId(AUTO_ID.getAndIncrement());
-        user2.setName("ffff");
-        users.put(user2.getId(), user2);
+    @Autowired
+    public void setSessionFactory(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
     }
 
+    @Override
+    @SuppressWarnings("unchecked")
     public List<User> allUser() {
-        return new ArrayList<User>(users.values());
+        Session session = sessionFactory.getCurrentSession();
+        return session.createQuery("from Users").list();
     }
 
     public void add(User user) {

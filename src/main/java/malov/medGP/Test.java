@@ -1,5 +1,6 @@
 package malov.medGP;
 
+import malov.medGP.base.DbConnect;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class Test {
